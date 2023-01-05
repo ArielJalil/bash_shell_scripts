@@ -5,7 +5,7 @@
 # Requisites:
 # - WGET command installed
 #
-# Arguments ore nly required if an specific Terragrunt version is required, otherwhise none are required to deploy latest version.
+# Arguments are only required if an specific Terragrunt version is required, otherwhise none are required to deploy latest version available.
 #
 # $1 = Version
 # $2 = Release
@@ -21,7 +21,7 @@
 TG_RELEASES_URL="https://github.com/gruntwork-io/terragrunt/releases"
 TG_DOWNLOAD_URL="${TG_RELEASES_URL}/download"
 
-# Evaluate arguments: 
+# Evaluate arguments:
 if [ $# -eq 0 ]
 then
 	# Look for the latest Terragrunt version_release available online:
@@ -33,7 +33,7 @@ else
 	else
 		echo "This script works with none or exactly 2 arguments in the following order: Version Release"
 		echo -e "i.e. ${0} 42 5\n"
-		exit 
+		exit
 	fi
 fi
 
@@ -63,7 +63,7 @@ else
 fi
 #
 # Install the new Terragrunt version:
-# 
+#
 echo "Downloading Terragrunt ${TG_LATEST} binary."
 wget ${TG_DOWNLOAD_URL}/${TG_LATEST}/${TG_BINARY} -q
 
@@ -94,4 +94,3 @@ fi
 
 cd -
 echo -e "\nNew version has been deployed.\n"
-
