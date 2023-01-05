@@ -17,7 +17,7 @@
 # $ tg_upgrade.sh
 #
 
-# Terragrunt install URL's:
+# Terragrunt URL's:
 TG_RELEASES_URL="https://github.com/gruntwork-io/terragrunt/releases"
 TG_DOWNLOAD_URL="${TG_RELEASES_URL}/download"
 
