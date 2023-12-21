@@ -10,6 +10,6 @@ Running this script periodically will help to keep your Terragrunt binary file u
 
 **Note:** keep in mind the script requires you to install WGET command before run it.
 
-## Author and Lincense:
+## Author and Lincense
 
 This script has been written by [Ariel Jall](https://github.com/ArielJalil) and it is released under [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0).

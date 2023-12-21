@@ -77,7 +77,7 @@ fi
 
 chmod +x ${TG_BINARY}
 
-if [ -f "${SYM_LINK}" ]
+if [ -L "${SYM_LINK}" ]
 then
 	echo "Deleting old symbolic link."
 	rm ${SYM_LINK}
@@ -86,7 +86,12 @@ fi
 # Create the new symbolic link to the latest terragrunt binary:
 ln -s ${NEW_DIR}/${TG_BINARY} ${SYM_LINK}
 
-if [ ! -f ${BIN_LINK} ]
+if [ -f ${BIN_LINK} ] && [ ! -L ${BIN_LINK} ]
+then
+	sudo rm ${BIN_LINK}
+fi
+
+if [ ! -L ${BIN_LINK} ]
 then
 	echo "Creating new terragrunt symbolic link at /usr/local/bin directory if it doesn't exist yet."
 	sudo ln -s ${SYM_LINK} ${BIN_LINK}
