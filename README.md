@@ -1,6 +1,6 @@
 # Useful Bash shell scripts
 
-## Install pre-commit
+## Consider to install pre-commit
 
 If you are planning to enhance this code it is highly recommended to install [pre-commit](https://pre-commit.com/index.html)
  to speed up development and keep some standard coding style.
