@@ -5,7 +5,8 @@
 # Requisites:
 # - WGET command installed
 #
-# Arguments are only required if an specific Terragrunt version is required, otherwhise none are required to deploy latest version available.
+# Arguments are only required if an specific Terragrunt version is required, otherwhise none are
+# required to deploy latest version available.
 #
 # $1 = Version
 # $2 = Release
@@ -13,7 +14,9 @@
 # i.e. Pass specific Version and Release to deploy:
 # $ tg_upgrade.sh 42 5
 #
-# i.e. If no version and release are passed as arguments the script will download the latest available version:
+# i.e. If no version and release are passed as arguments the script will download the latest
+# available version:
+#
 # $ tg_upgrade.sh
 #
 
@@ -31,7 +34,8 @@ else
 	then
 		TG_LATEST="v0.${1}.${2}"   # i.e. v0.42.5
 	else
-		echo "This script works with none or exactly 2 arguments in the following order: Version Release"
+		echo "This script works with none or exactly 2 arguments in the following order:"
+		echo -e "${0} [ Version ] [ Release ]\n"
 		echo -e "i.e. ${0} 42 5\n"
 		exit
 	fi
@@ -49,7 +53,7 @@ TG_BINARY="terragrunt_darwin_amd64"  # MAC
 if [ ! -d "${BASE_DIR}" ]
 then
 	echo "Creating base directory to hold Terragrunt binary."
-	mkdir -p ${BASE_DIR}
+	mkdir -p "${BASE_DIR}"
 fi
 
 # Check if the requested version exist and create the new directory if it doesn't:
@@ -58,44 +62,52 @@ then
 	echo -e "Terragrunt ${TG_LATEST} is already installed, No action taken.\n"
 	exit
 else
-	mkdir ${NEW_DIR}
-	cd ${NEW_DIR}
+	mkdir "${NEW_DIR}"
+	cd "${NEW_DIR}" || exit
 fi
 #
 # Install the new Terragrunt version:
 #
 echo "Downloading Terragrunt ${TG_LATEST} binary."
-wget ${TG_DOWNLOAD_URL}/${TG_LATEST}/${TG_BINARY} -q
-
-if [ $? -ne 0 ]
+if ! wget "${TG_DOWNLOAD_URL}"/"${TG_LATEST}"/"${TG_BINARY}" -q
 then
 	echo "Terragrunt binary file download FAILED."
-	cd -
-	rm -rf ${NEW_DIR}
+	cd - || exit
+	rm -rf "${NEW_DIR}"
 	exit
 fi
 
-chmod +x ${TG_BINARY}
+# wget "${TG_DOWNLOAD_URL}"/"${TG_LATEST}"/"${TG_BINARY}" -q
+
+# if [ $? -ne 0 ]
+# then
+# 	echo "Terragrunt binary file download FAILED."
+# 	cd - || exit
+# 	rm -rf "${NEW_DIR}"
+# 	exit
+# fi
+
+chmod +x "${TG_BINARY}"
 
 if [ -L "${SYM_LINK}" ]
 then
 	echo "Deleting old symbolic link."
-	rm ${SYM_LINK}
+	rm "${SYM_LINK}"
 fi
 
 # Create the new symbolic link to the latest terragrunt binary:
-ln -s ${NEW_DIR}/${TG_BINARY} ${SYM_LINK}
+ln -s "${NEW_DIR}"/"${TG_BINARY}" "${SYM_LINK}"
 
-if [ -f ${BIN_LINK} ] && [ ! -L ${BIN_LINK} ]
+if [ -f "${BIN_LINK}" ] && [ ! -L "${BIN_LINK}" ]
 then
-	sudo rm ${BIN_LINK}
+	sudo rm "${BIN_LINK}"
 fi
 
-if [ ! -L ${BIN_LINK} ]
+if [ ! -L "${BIN_LINK}" ]
 then
-	echo "Creating new terragrunt symbolic link at /usr/local/bin directory if it doesn't exist yet."
-	sudo ln -s ${SYM_LINK} ${BIN_LINK}
+	echo "Creating terragrunt symbolic link at /usr/local/bin directory if it doesn't exist yet."
+	sudo ln -s "${SYM_LINK}" "${BIN_LINK}"
 fi
 
-cd -
+cd - || exit
 echo -e "\nNew version has been deployed.\n"
