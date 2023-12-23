@@ -1,5 +1,12 @@
 # Useful Bash shell scripts
 
+## Install pre-commit
+
+If you are planning to enhance this code it is highly recommended to install [pre-commit](https://pre-commit.com/index.html)
+ to speed up development and keep some standard coding style.
+
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+
 ## tg_upgrade.sh
 
 Download Terragrunt binary file and replace/create symbolic links to the binary.
