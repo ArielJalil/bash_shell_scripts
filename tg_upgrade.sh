@@ -77,16 +77,6 @@ then
 	exit
 fi
 
-# wget "${TG_DOWNLOAD_URL}"/"${TG_LATEST}"/"${TG_BINARY}" -q
-
-# if [ $? -ne 0 ]
-# then
-# 	echo "Terragrunt binary file download FAILED."
-# 	cd - || exit
-# 	rm -rf "${NEW_DIR}"
-# 	exit
-# fi
-
 chmod +x "${TG_BINARY}"
 
 if [ -L "${SYM_LINK}" ]
