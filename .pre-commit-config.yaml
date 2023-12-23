@@ -1,26 +1,23 @@
 repos:
-# MarkDown
-- repo: https://github.com/igorshubovych/markdownlint-cli
-  rev: v0.38.0
-  hooks:
-  - id: markdownlint
-    name: Run markdownlint on your Markdown files
-# CommonTextIssues
-- repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.5.0
-  hooks:
-    - id: trailing-whitespace
-      name: Trims trailing whitespace
-    - id: end-of-file-fixer
-      name: Makes sure files end in a newline
-    - id: mixed-line-ending
-      name: Replaces or checks mixed line ending
-    - id: check-added-large-files
-      name: Prevent giant files from being committed (500kB)
-    - id: detect-aws-credentials
-      name: Checks for AWS secrets
-# Shell Sripts
-- repo: https://github.com/shellcheck-py/shellcheck-py
-  rev: v0.9.0.6
-  hooks:
-    - id: shellcheck
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.38.0
+    hooks:
+      - id: markdownlint
+        name: Run markdownlint on your Markdown files
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        name: Trims trailing whitespace
+      - id: end-of-file-fixer
+        name: Makes sure files end in a newline
+      - id: mixed-line-ending
+        name: Replaces or checks mixed line ending
+      - id: check-added-large-files
+        name: Prevent giant files from being committed (500kB)
+      - id: detect-aws-credentials
+        name: Checks for AWS secrets
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.9.0.6
+    hooks:
+      - id: shellcheck
